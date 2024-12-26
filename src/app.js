@@ -20,7 +20,7 @@ import { error } from 'console'
 const whiteList = [
   'https://artmdx.tech',
   'http://localhost:3000',
-  'https://wikipedia.org'
+  'https://pt.wikipedia.org/'
 ]
 
 const corsOptions = {
