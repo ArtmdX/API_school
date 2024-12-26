@@ -1,4 +1,3 @@
-import app from './app'
+import app from './app.js'
 
-const port = 3000
 app.listen(process.env.APP_PORT)
