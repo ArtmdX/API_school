@@ -19,7 +19,8 @@ var _console = require('console');
 
 const whiteList = [
   'https://artmdx.tech',
-  'http://localhost:3000'
+  'http://localhost:3000',
+  'https://pt.wikipedia.org/'
 ]
 
 const corsOptions = {
