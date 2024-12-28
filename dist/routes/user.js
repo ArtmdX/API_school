@@ -9,11 +9,11 @@ const router = new (0, _express.Router)();
 // router.get('/', userController.index)
 // router.get('/:id', userController.show)
 
-router.post('/',_loginRequired2.default, _User2.default.store)
-router.put('/:id',_loginRequired2.default, _User2.default.update)
-router.delete('/:id',_loginRequired2.default, _User2.default.delete)
+router.post("/", _User2.default.store);
+router.put("/:id", _loginRequired2.default, _User2.default.update);
+router.delete("/:id", _loginRequired2.default, _User2.default.delete);
 
-exports. default = router
+exports. default = router;
 
 /*
 Padrões de rotas

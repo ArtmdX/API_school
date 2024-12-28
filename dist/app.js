@@ -31,13 +31,8 @@ class App {
     this.app.use(
       _helmet2.default.default.crossOriginOpenerPolicy({ policy: "unsafe-none" })
     );
-
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
-    this.app.use((req, res, next) => {
-      console.log("CORS Headers:", res.getHeaders());
-      next();
-    });
     this.app.use(
       "/images",
       _express2.default.static(_path.resolve.call(void 0, __dirname, "..", "uploads", "images"))
