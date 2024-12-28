@@ -49,13 +49,14 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
 
     this.addHook("beforeSave", async (user) => {
       if (user.password) {
-        user.password_hash = await _bcryptjs2.default.hash(user.password, '8');
+        const salt = await _bcryptjs2.default.genSalt(8);
+        user.password_hash = await _bcryptjs2.default.hash(user.password, salt);
       }
     });
     return this;
   }
 
-  passwordIsValid(password){
-    return _bcryptjs2.default.compare(password, this.password_hash)
+  passwordIsValid(password) {
+    return _bcryptjs2.default.compare(password, this.password_hash);
   }
 } exports.default = User;
