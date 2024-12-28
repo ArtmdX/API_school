@@ -25,9 +25,23 @@ class App {
   middlewares() {
     this.app.use(cors());
     this.app.use(helmet());
+    this.app.use(
+      helmet.default.crossOriginResourcePolicy({ policy: "cross-origin" })
+    );
+    this.app.use(
+      helmet.default.crossOriginOpenerPolicy({ policy: "unsafe-none" })
+    );
+
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use(express.static(resolve(__dirname, "uploads", "images")));
+    this.app.use((req, res, next) => {
+      console.log("CORS Headers:", res.getHeaders());
+      next();
+    });
+    this.app.use(
+      "/images",
+      express.static(resolve(__dirname, "..", "uploads", "images"))
+    );
   }
 
   routes() {
