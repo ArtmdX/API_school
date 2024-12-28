@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import userController from '../controllers/User'
+import { Router } from "express";
+import userController from "../controllers/User";
 
-import loginRequired from '../middlewares/loginRequired';
+import loginRequired from "../middlewares/loginRequired";
 
 const router = new Router();
 
@@ -9,11 +9,11 @@ const router = new Router();
 // router.get('/', userController.index)
 // router.get('/:id', userController.show)
 
-router.post('/',loginRequired, userController.store)
-router.put('/:id',loginRequired, userController.update)
-router.delete('/:id',loginRequired, userController.delete)
+router.post("/", userController.store);
+router.put("/:id", loginRequired, userController.update);
+router.delete("/:id", loginRequired, userController.delete);
 
-export default router
+export default router;
 
 /*
 Padrões de rotas
