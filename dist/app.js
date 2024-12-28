@@ -1,50 +1,47 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-var _dotenv = require("dotenv");
-var _dotenv2 = _interopRequireDefault(_dotenv);
-var _path = require("path");
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
+var _path = require('path');
 
 _dotenv2.default.config();
 
-require("./database");
+require('./database');
 
-var _cors = require("cors");
-var _cors2 = _interopRequireDefault(_cors);
-var _helmet = require("helmet");
-var _helmet2 = _interopRequireDefault(_helmet);
-var _express = require("express");
-var _express2 = _interopRequireDefault(_express);
+var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
+var _helmet = require('helmet'); var _helmet2 = _interopRequireDefault(_helmet);
+var _express = require('express'); var _express2 = _interopRequireDefault(_express);
 
-var _home = require("./routes/home");
-var _home2 = _interopRequireDefault(_home);
-var _user = require("./routes/user");
-var _user2 = _interopRequireDefault(_user);
-var _token = require("./routes/token");
-var _token2 = _interopRequireDefault(_token);
-var _aluno = require("./routes/aluno");
-var _aluno2 = _interopRequireDefault(_aluno);
-var _foto = require("./routes/foto");
-var _foto2 = _interopRequireDefault(_foto);
+var _home = require('./routes/home'); var _home2 = _interopRequireDefault(_home);
+var _user = require('./routes/user'); var _user2 = _interopRequireDefault(_user);
+var _token = require('./routes/token'); var _token2 = _interopRequireDefault(_token);
+var _aluno = require('./routes/aluno'); var _aluno2 = _interopRequireDefault(_aluno);
+var _foto = require('./routes/foto'); var _foto2 = _interopRequireDefault(_foto);
 
 class App {
   constructor() {
-    this.app = _express2.default.call(void 0);
+    this.app = _express2.default.call(void 0, );
     this.middlewares();
     this.routes();
   }
 
   middlewares() {
-    this.app.use(_cors2.default.call(void 0));
-    this.app.use(_helmet2.default.call(void 0));
+    this.app.use(_cors2.default.call(void 0, ));
+    this.app.use(_helmet2.default.call(void 0, ));
+    this.app.use(
+      _helmet2.default.default.crossOriginResourcePolicy({ policy: "cross-origin" })
+    );
+    this.app.use(
+      _helmet2.default.default.crossOriginOpenerPolicy({ policy: "unsafe-none" })
+    );
+
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
     this.app.use((req, res, next) => {
       console.log("CORS Headers:", res.getHeaders());
       next();
     });
+    this.app.use(
+      "/images",
+      _express2.default.static(_path.resolve.call(void 0, __dirname, "..", "uploads", "images"))
+    );
   }
 
   routes() {
@@ -56,4 +53,4 @@ class App {
   }
 }
 
-exports.default = new App().app;
+exports. default = new App().app;
